@@ -1,0 +1,68 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #002418;
+  --color-primary-container: #073b2a;
+  --color-on-primary: #ffffff;
+  --color-on-primary-container: #76a68f;
+  --color-primary-fixed: #bbeed5;
+  --color-primary-fixed-dim: #a0d1b9;
+  --color-secondary: #765a00;
+  --color-secondary-container: #fdc826;
+  --color-on-secondary-container: #6e5400;
+  --color-secondary-fixed: #ffdf95;
+  --color-secondary-fixed-dim: #f4bf1b;
+  --color-tertiary: #321700;
+  --color-tertiary-container: #4e2a08;
+  --color-surface: #f2fcef;
+  --color-surface-container-lowest: #ffffff;
+  --color-surface-container-low: #ecf7e9;
+  --color-surface-container: #e6f1e4;
+  --color-surface-container-high: #e1ebde;
+  --color-surface-container-highest: #dbe5d8;
+  --color-on-surface: #151e16;
+  --color-on-surface-variant: #414944;
+  --color-outline: #717974;
+  --color-outline-variant: #c0c9c2;
+
+  --font-display: "Manrope", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-body: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  --spacing-gutter: 1.5rem;
+  --spacing-space-xs: 0.25rem;
+  --spacing-space-sm: 0.5rem;
+  --spacing-space-md: 1rem;
+  --spacing-space-lg: 1.5rem;
+  --spacing-space-xl: 2.5rem;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--color-surface-container-lowest);
+  color: var(--color-on-surface);
+}
+
+h1, h2, h3, h4, .font-headline {
+  font-family: var(--font-display);
+}
+
+/* Material symbol styling helper */
+.material-symbols-outlined {
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+  display: inline-block;
+  vertical-align: middle;
+  line-height: 1;
+}
+
+.material-symbols-outlined.fill-1 {
+  font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}
+
+/* Hide scrollbar for category tabs */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}

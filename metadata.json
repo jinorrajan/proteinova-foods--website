@@ -1,0 +1,6 @@
+{
+  "name": "Proteinova - Farm-Fresh Eggs & Wholesome Recipes",
+  "description": "Explore chef-crafted breakfast bowls, protein-dense egg recipes, clinical farm-fresh quality eggs, and culinary egg science with Proteinova.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
