@@ -70,6 +70,7 @@ export const BookmarksDrawer: React.FC<BookmarksDrawerProps> = ({
                 <img
                   src={recipe.image}
                   alt={recipe.altText}
+                  referrerPolicy="no-referrer"
                   className="w-18 h-18 rounded-xl object-cover shrink-0 cursor-pointer"
                   onClick={() => {
                     onOpenRecipe(recipe);

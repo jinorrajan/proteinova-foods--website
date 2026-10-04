@@ -137,8 +137,8 @@ export default function App() {
       {/* Footer */}
       <Footer onNavigate={(tab) => setCurrentTab(tab)} />
 
-      {/* Floating Interactive Culinary Concierge Chat */}
-      <ChatDrawer />
+      {/* Floating Interactive Culinary Concierge Chat - Only shown on Recipes screen */}
+      {currentTab === 'recipes' && <ChatDrawer />}
 
       {/* Modals & Slide-overs */}
       <RecipeModal

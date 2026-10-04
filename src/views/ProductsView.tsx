@@ -3,14 +3,14 @@ import {
   Egg,
   ShieldCheck,
   Check,
-  Plus,
-  Minus,
+  CheckCircle2,
   Sparkles,
   ArrowRight,
   TrendingUp,
   Layers,
   ThermometerSnowflake,
-  ShoppingBag,
+  ChefHat,
+  Award,
 } from 'lucide-react';
 import { PRODUCTS, Product } from '../data/products';
 
@@ -23,32 +23,7 @@ export const ProductsView: React.FC<ProductsViewProps> = ({
   onSelectRecipeEggType,
   onNavigatePartner,
 }) => {
-  const [selectedPackMap, setSelectedPackMap] = useState<Record<string, number>>({});
-  const [quantities, setQuantities] = useState<Record<string, number>>({});
-  const [cartSuccessItem, setCartSuccessItem] = useState<string | null>(null);
   const [activeFilter, setActiveFilter] = useState<'all' | 'hen' | 'specialty' | 'liquid'>('all');
-
-  const getSelectedPack = (product: Product) => {
-    const idx = selectedPackMap[product.id] ?? 0;
-    return product.packOptions[idx] || product.packOptions[0];
-  };
-
-  const updateQuantity = (productId: string, delta: number) => {
-    setQuantities((prev) => {
-      const current = prev[productId] || 1;
-      const next = Math.max(1, current + delta);
-      return { ...prev, [productId]: next };
-    });
-  };
-
-  const handleAddToCart = (product: Product) => {
-    const pack = getSelectedPack(product);
-    const qty = quantities[product.id] || 1;
-    setCartSuccessItem(`${qty}x ${product.name} (${pack.size})`);
-    setTimeout(() => {
-      setCartSuccessItem(null);
-    }, 2800);
-  };
 
   const filteredProducts = PRODUCTS.filter((p) => {
     if (activeFilter === 'hen') return p.eggTypeKey === 'brown' || p.eggTypeKey === 'white' || p.eggTypeKey === 'country';
@@ -60,18 +35,6 @@ export const ProductsView: React.FC<ProductsViewProps> = ({
   return (
     <div className="w-full bg-[#ffffff] min-h-screen py-10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Toast Alert */}
-        {cartSuccessItem && (
-          <div className="fixed top-24 right-6 z-50 bg-[#002418] text-white px-5 py-3 rounded-2xl shadow-xl border border-[#fdc826] flex items-center gap-3 animate-in slide-in-from-top-4">
-            <span className="w-8 h-8 rounded-full bg-[#fdc826] text-[#002418] flex items-center justify-center font-bold">
-              ✓
-            </span>
-            <div className="text-xs sm:text-sm">
-              <span className="font-bold">Added to Order Cart:</span> {cartSuccessItem}
-            </div>
-          </div>
-        )}
-
         {/* Header */}
         <div className="max-w-3xl mb-10">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#ecf7e9] text-[#073b2a] text-xs font-bold uppercase tracking-wider mb-3">
@@ -111,10 +74,6 @@ export const ProductsView: React.FC<ProductsViewProps> = ({
         {/* Product Cards Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {filteredProducts.map((product) => {
-            const selectedPack = getSelectedPack(product);
-            const qty = quantities[product.id] || 1;
-            const totalPrice = selectedPack.price * qty;
-
             return (
               <div
                 key={product.id}
@@ -125,6 +84,7 @@ export const ProductsView: React.FC<ProductsViewProps> = ({
                   <img
                     src={product.image}
                     alt={product.name}
+                    referrerPolicy="no-referrer"
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   />
                   <div className="absolute top-3 left-3">
@@ -168,83 +128,52 @@ export const ProductsView: React.FC<ProductsViewProps> = ({
                       </div>
                     </div>
 
-                    {/* Pack Options Segmented Trigger */}
-                    <div>
-                      <span className="text-xs font-bold text-[#002418] block mb-2 uppercase tracking-wider">
-                        Select Packaging:
+                    {/* Key Highlights */}
+                    <div className="space-y-1.5 mb-4">
+                      <span className="text-[11px] font-bold text-[#002418] uppercase tracking-wider block">
+                        Clinical Quality Highlights:
                       </span>
-                      <div className="grid grid-cols-3 gap-1.5">
-                        {product.packOptions.map((pack, pIdx) => {
-                          const isSelected = (selectedPackMap[product.id] ?? 0) === pIdx;
-                          return (
-                            <button
-                              key={pack.sku}
-                              type="button"
-                              onClick={() =>
-                                setSelectedPackMap((prev) => ({
-                                  ...prev,
-                                  [product.id]: pIdx,
-                                }))
-                              }
-                              className={`p-2 rounded-xl text-center transition-all cursor-pointer border ${
-                                isSelected
-                                  ? 'bg-[#002418] text-white border-[#002418] shadow-xs'
-                                  : 'bg-[#f6f7f5] text-[#414944] border-slate-200 hover:border-slate-300'
-                              }`}
-                            >
-                              <div className="text-[11px] font-bold leading-tight truncate">
-                                {pack.size}
-                              </div>
-                              <div className={`text-xs mt-0.5 ${isSelected ? 'text-[#fdc826]' : 'text-[#002418] font-bold'}`}>
-                                ₹{pack.price}
-                              </div>
-                            </button>
-                          );
-                        })}
+                      {product.keyHighlights.slice(0, 3).map((highlight, hIdx) => (
+                        <div key={hIdx} className="flex items-start gap-2 text-xs text-[#414944]">
+                          <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 mt-0.5 shrink-0" />
+                          <span>{highlight}</span>
+                        </div>
+                      ))}
+                    </div>
+
+                    {/* Ideal Culinary Applications */}
+                    <div>
+                      <span className="text-[11px] font-bold text-[#765a00] uppercase tracking-wider block mb-1.5 flex items-center gap-1">
+                        <ChefHat className="w-3.5 h-3.5" />
+                        <span>Recommended Culinary Uses:</span>
+                      </span>
+                      <div className="flex flex-wrap gap-1.5">
+                        {product.idealFor.map((use, uIdx) => (
+                          <span
+                            key={uIdx}
+                            className="px-2.5 py-1 rounded-lg bg-[#f6f7f5] text-[#002418] text-[11px] font-medium border border-slate-200"
+                          >
+                            {use}
+                          </span>
+                        ))}
                       </div>
                     </div>
                   </div>
 
-                  {/* Pricing & Add to Cart Row */}
-                  <div className="pt-4 border-t border-[#e1ebde] flex items-center justify-between gap-3">
-                    <div className="flex items-center gap-2">
-                      <div className="flex items-center border border-slate-200 rounded-xl bg-[#f6f7f5] p-0.5">
-                        <button
-                          type="button"
-                          onClick={() => updateQuantity(product.id, -1)}
-                          className="w-7 h-7 flex items-center justify-center text-[#002418] hover:bg-white rounded-lg transition-colors cursor-pointer"
-                          aria-label="Decrease quantity"
-                        >
-                          <Minus className="w-3.5 h-3.5" />
-                        </button>
-                        <span className="w-7 text-center text-xs font-bold text-[#002418]">
-                          {qty}
-                        </span>
-                        <button
-                          type="button"
-                          onClick={() => updateQuantity(product.id, 1)}
-                          className="w-7 h-7 flex items-center justify-center text-[#002418] hover:bg-white rounded-lg transition-colors cursor-pointer"
-                          aria-label="Increase quantity"
-                        >
-                          <Plus className="w-3.5 h-3.5" />
-                        </button>
-                      </div>
-                    </div>
-
-                    <div className="text-right">
-                      <div className="text-xs text-[#717974]">Total Price</div>
-                      <div className="font-headline text-lg font-bold text-[#002418]">
-                        ₹{totalPrice}
-                      </div>
+                  {/* Clean Bottom Information Row */}
+                  <div className="pt-4 border-t border-[#e1ebde] flex items-center justify-between text-xs">
+                    <div className="flex items-center gap-1.5 text-[#073b2a] font-semibold">
+                      <ShieldCheck className="w-4 h-4 text-emerald-600 shrink-0" />
+                      <span>Zero Antibiotics &amp; Hormones</span>
                     </div>
 
                     <button
                       type="button"
-                      onClick={() => handleAddToCart(product)}
-                      className="px-4 py-2.5 rounded-xl bg-[#fdc826] text-[#002418] text-xs font-bold hover:bg-[#f4bf1b] transition-all cursor-pointer flex items-center gap-1.5 shadow-xs"
+                      onClick={onNavigatePartner}
+                      className="inline-flex items-center gap-1 text-xs font-bold text-[#002418] hover:text-[#765a00] transition-colors cursor-pointer"
                     >
-                      <ShoppingBag className="w-3.5 h-3.5" />
-                      <span>Order</span>
+                      <span>Wholesale Specs</span>
+                      <ArrowRight className="w-3.5 h-3.5" />
                     </button>
                   </div>
                 </div>

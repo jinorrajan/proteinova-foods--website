@@ -86,6 +86,7 @@ export const HomeView: React.FC<HomeViewProps> = ({ onNavigate, onOpenRecipe }) 
                 <img
                   src="https://lh3.googleusercontent.com/aida-public/AB6AXuBP3jzb1lKaJ6PLw04acUWWumNCIUsoRTkKxPAspZVRhhi61aCOo_r-ihkrLYUyl0Y2nQL_OMyMPZu71jjIsNFPPckf4O_7KoMx-B9Ptbm_Ps7_3NIE159GqdgcGLUt0sz4wnogQRbEK0vcb-N6w_8HuKo_wBGf547NmD-edTqeOOoCkd3pF7QA42R1JbYXEcV1mp9ZlZdpGQW9HBut30YgbKTt00KRS1R5vBElIjguu-VGYgvAG_V0hw"
                   alt="Golden Truffle Soft Scramble with Sourdough"
+                  referrerPolicy="no-referrer"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end p-6 text-white">
@@ -142,6 +143,7 @@ export const HomeView: React.FC<HomeViewProps> = ({ onNavigate, onOpenRecipe }) 
                   <img
                     src={p.image}
                     alt={p.name}
+                    referrerPolicy="no-referrer"
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   />
                   <span className="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-[#fdc826] text-[#002418] text-[10px] font-extrabold uppercase tracking-wider">
@@ -162,13 +164,13 @@ export const HomeView: React.FC<HomeViewProps> = ({ onNavigate, onOpenRecipe }) 
                   </div>
                   <div className="pt-3 border-t border-slate-100 flex items-center justify-between">
                     <span className="text-xs text-[#717974]">
-                      From <strong className="text-[#002418]">₹{p.packOptions[0].price}</strong>
+                      Graded Fresh Daily
                     </span>
                     <button
                       onClick={() => onNavigate('products')}
                       className="px-3.5 py-1.5 rounded-xl bg-[#ecf7e9] hover:bg-[#dbe5d8] text-[#002418] text-xs font-bold transition-colors cursor-pointer"
                     >
-                      Select Pack
+                      View Specs
                     </button>
                   </div>
                 </div>
@@ -210,6 +212,7 @@ export const HomeView: React.FC<HomeViewProps> = ({ onNavigate, onOpenRecipe }) 
                   <img
                     src={r.image}
                     alt={r.title}
+                    referrerPolicy="no-referrer"
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   />
                   <span className="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-white/95 text-[#002418] text-[10px] font-bold">

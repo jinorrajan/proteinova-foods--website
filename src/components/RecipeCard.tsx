@@ -23,6 +23,7 @@ export const RecipeCard: React.FC<RecipeCardProps> = ({
           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
           alt={recipe.altText}
           src={recipe.image}
+          referrerPolicy="no-referrer"
           loading="lazy"
         />
 

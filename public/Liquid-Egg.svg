@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="100%" height="100%">
+  <defs>
+    <radialGradient id="liquidTable" cx="50%" cy="30%" r="70%">
+      <stop offset="0%" stop-color="#f5fdf9"/>
+      <stop offset="100%" stop-color="#d4ebdf"/>
+    </radialGradient>
+    <linearGradient id="bottleGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.95"/>
+      <stop offset="50%" stop-color="#eaf5ef" stop-opacity="0.85"/>
+      <stop offset="100%" stop-color="#cbe4d7" stop-opacity="0.95"/>
+    </linearGradient>
+    <linearGradient id="albumenFluid" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#f3fcf7" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#bde9d2" stop-opacity="0.9"/>
+    </linearGradient>
+    <filter id="bottleShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="16" stdDeviation="18" flood-color="#002418" flood-opacity="0.2"/>
+    </filter>
+  </defs>
+  <!-- Background Studio Table -->
+  <rect width="800" height="600" fill="url(#liquidTable)"/>
+  
+  <!-- Subtle Kitchen Lines -->
+  <line x1="0" y1="460" x2="800" y2="460" stroke="#b2d6c4" stroke-width="2" opacity="0.4"/>
+  <ellipse cx="400" cy="490" rx="180" ry="24" fill="#073b2a" opacity="0.12"/>
+
+  <!-- Bottle Body -->
+  <g filter="url(#bottleShadow)">
+    <!-- Cap -->
+    <rect x="365" y="100" width="70" height="42" rx="8" fill="#073b2a"/>
+    <rect x="375" y="92" width="50" height="12" rx="4" fill="#fdc826"/>
+    <!-- Bottle Neck -->
+    <path d="M375,142 L425,142 L445,210 L355,210 Z" fill="url(#bottleGrad)" stroke="#76a68f" stroke-width="2"/>
+    <!-- Bottle Main Cylinder -->
+    <rect x="330" y="210" width="140" height="260" rx="28" fill="url(#bottleGrad)" stroke="#76a68f" stroke-width="2"/>
+    <!-- Liquid Content Inside Bottle -->
+    <rect x="338" y="240" width="124" height="220" rx="20" fill="url(#albumenFluid)"/>
+    <!-- Measurement Scale Lines -->
+    <line x1="345" y1="280" x2="365" y2="280" stroke="#073b2a" stroke-width="2.5" opacity="0.6"/>
+    <text x="372" y="284" font-family="system-ui, sans-serif" font-size="12" font-weight="bold" fill="#073b2a" opacity="0.8">750ml</text>
+    <line x1="345" y1="330" x2="365" y2="330" stroke="#073b2a" stroke-width="2.5" opacity="0.6"/>
+    <text x="372" y="334" font-family="system-ui, sans-serif" font-size="12" font-weight="bold" fill="#073b2a" opacity="0.8">500ml</text>
+    <line x1="345" y1="380" x2="365" y2="380" stroke="#073b2a" stroke-width="2.5" opacity="0.6"/>
+    <text x="372" y="384" font-family="system-ui, sans-serif" font-size="12" font-weight="bold" fill="#073b2a" opacity="0.8">250ml</text>
+    <!-- Bottle Label -->
+    <rect x="345" y="405" width="110" height="42" rx="8" fill="#002418"/>
+    <text x="400" y="422" font-family="system-ui, sans-serif" font-size="10" font-weight="bold" fill="#fdc826" text-anchor="middle" letter-spacing="1">PROTEINOVA</text>
+    <text x="400" y="437" font-family="system-ui, sans-serif" font-size="11" font-weight="extrabold" fill="#ffffff" text-anchor="middle">PURE ALBUMEN</text>
+  </g>
+
+  <!-- Pouring Whisk / Egg Glass on Right -->
+  <ellipse cx="570" cy="450" rx="55" ry="16" fill="#073b2a" opacity="0.1"/>
+  <!-- Glass Bowl -->
+  <path d="M520,380 Q570,490 620,380 Z" fill="#ffffff" fill-opacity="0.75" stroke="#76a68f" stroke-width="2" filter="url(#bottleShadow)"/>
+  <ellipse cx="570" cy="380" rx="50" ry="14" fill="#d8f3e5" stroke="#76a68f" stroke-width="1.5"/>
+  <ellipse cx="570" cy="425" rx="32" ry="10" fill="#9de3be" opacity="0.6"/>
+
+  <!-- Title Badge Banner -->
+  <rect x="30" y="30" width="370" height="52" rx="26" fill="#073b2a" opacity="0.95"/>
+  <circle cx="56" cy="56" r="16" fill="#fdc826"/>
+  <text x="56" y="62" font-family="system-ui, sans-serif" font-size="16" font-weight="bold" fill="#073b2a" text-anchor="middle">✓</text>
+  <text x="86" y="62" font-family="system-ui, sans-serif" font-size="16" font-weight="bold" fill="#ffffff">Clinical Pure Liquid Egg Whites</text>
+</svg>

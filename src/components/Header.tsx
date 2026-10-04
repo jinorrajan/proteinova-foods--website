@@ -45,6 +45,7 @@ export const Header: React.FC<HeaderProps> = ({
             alt="Proteinova Food Products Logo"
             className="h-8 w-auto object-contain transition-transform group-hover:scale-105"
             src="https://lh3.googleusercontent.com/aida/AEtjO1WgYfAftSS7MhJThrrpKVDFB185Qr0F3m-6MszTZJUSZITIf1CMCFEGeDFf02fDfRaE9H6ypaA5iXctK1EeCOkRbbnGW6rTQEWE89CN0f4wAWD43-S1bpViku9hbTKTOR_Ek7SxkIuWPNk_TYOjy4riWmKJPDXDAbprMBkFre4RZ4KSl90MtPXJkfhkHKVYjGzTUeDP_Hve2MGI-XxOG_U_RKKYG4fl3KE0WjXZDkqiuKY3VgRTBlhfRkow"
+            referrerPolicy="no-referrer"
           />
           <span className="font-headline text-xl text-[#002418] tracking-tight font-extrabold hidden sm:inline-block">
             Proteinova
