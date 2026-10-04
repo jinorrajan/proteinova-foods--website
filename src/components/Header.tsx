@@ -44,7 +44,7 @@ export const Header: React.FC<HeaderProps> = ({
             className="h-10 w-auto object-contain transition-transform group-hover:scale-105"
             src="/Minimalist Golden Egg Spiral Logo.png"
           />
-          <span className="font-headline text-xl text-[#002418] tracking-tight font-extrabold hidden sm:inline-block">
+          <span className="font-headline text-xl text-[#002418] tracking-tight font-extrabold">
             Proteinova
           </span>
         </button>
