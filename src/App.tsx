@@ -9,7 +9,6 @@ import { Footer } from './components/Footer';
 import { RecipeModal } from './components/RecipeModal';
 import { SubmitRecipeModal } from './components/SubmitRecipeModal';
 import { BookmarksDrawer } from './components/BookmarksDrawer';
-import { ProfileModal } from './components/ProfileModal';
 import { ChatDrawer } from './components/ChatDrawer';
 import { RecipesView } from './views/RecipesView';
 import { HomeView } from './views/HomeView';
@@ -20,14 +19,23 @@ import { ContactView } from './views/ContactView';
 import { RECIPES, Recipe } from './data/recipes';
 
 export default function App() {
-  const [currentTab, setCurrentTab] = useState<string>('recipes');
+  const [currentTab, setCurrentTab] = useState<string>('home');
   const [selectedRecipe, setSelectedRecipe] = useState<Recipe | null>(null);
-  const [savedRecipeIds, setSavedRecipeIds] = useState<Set<string>>(
-    new Set(['golden-truffle-soft-scramble', 'spiced-skillet-shakshuka'])
-  );
+  const [savedRecipeIds, setSavedRecipeIds] = useState<Set<string>>(() => {
+    try {
+      const stored = localStorage.getItem('proteinova_saved_recipes');
+      if (stored) return new Set(JSON.parse(stored));
+    } catch {}
+    return new Set(['golden-truffle-soft-scramble', 'spiced-skillet-shakshuka']);
+  });
   const [isBookmarksOpen, setIsBookmarksOpen] = useState(false);
-  const [isProfileOpen, setIsProfileOpen] = useState(false);
   const [isSubmitModalOpen, setIsSubmitModalOpen] = useState(false);
+
+  React.useEffect(() => {
+    try {
+      localStorage.setItem('proteinova_saved_recipes', JSON.stringify(Array.from(savedRecipeIds)));
+    } catch {}
+  }, [savedRecipeIds]);
 
   // Toggle bookmark helper
   const handleToggleBookmark = (recipeId: string) => {
@@ -94,7 +102,6 @@ export default function App() {
         onNavigate={(tab) => setCurrentTab(tab)}
         savedCount={savedRecipeIds.size}
         onOpenBookmarks={() => setIsBookmarksOpen(true)}
-        onOpenProfile={() => setIsProfileOpen(true)}
       />
 
       {/* Main Content Body */}
@@ -156,11 +163,7 @@ export default function App() {
         onRemoveBookmark={handleToggleBookmark}
       />
 
-      <ProfileModal
-        isOpen={isProfileOpen}
-        onClose={() => setIsProfileOpen(false)}
-        savedCount={savedRecipeIds.size}
-      />
+
 
       <SubmitRecipeModal
         isOpen={isSubmitModalOpen}

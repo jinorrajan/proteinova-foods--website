@@ -3,11 +3,11 @@ import {
   ShieldCheck,
   Award,
   CheckCircle2,
-  Microscope,
-  Leaf,
   Truck,
-  HeartHandshake,
-  ArrowRight,
+  Store,
+  PackageSearch,
+  Target,
+  Eye
 } from 'lucide-react';
 
 interface AboutViewProps {
@@ -19,151 +19,179 @@ export const AboutView: React.FC<AboutViewProps> = ({
   onNavigateRecipes,
   onNavigateProducts,
 }) => {
-  const pillars = [
+  const whatWeDo = [
     {
-      icon: <Microscope className="w-6 h-6 text-[#fdc826]" />,
-      title: 'Clinical Farm Hygiene & Bio-Security',
-      desc: 'Our farm-gate operations follow zero-pathogen cleanroom protocols. Daily screening for Salmonella Enteritidis and heavy metals ensures absolute kitchen safety.',
-    },
-    {
-      icon: <Leaf className="w-6 h-6 text-[#fdc826]" />,
-      title: '100% Vegetarian Biological Ration',
-      desc: 'Formulated with organic whole grains, sprouted seeds, and cold-pressed flaxseed oil. We never feed animal by-products, synthetic colorants, or hormone additives.',
-    },
-    {
-      icon: <Award className="w-6 h-6 text-[#fdc826]" />,
-      title: '88+ Haugh Freshness Index',
-      desc: 'Standard commercial eggs hover around 60–70 Haugh units. Proteinova eggs measure 86–94 Haugh at harvest, ensuring the thickest albumen and roundest golden yolk dome.',
+      icon: <Store className="w-6 h-6 text-[#fdc826]" />,
+      title: 'Retail Eggs',
+      desc: 'Conveniently packed eggs for households through Proteinova stores and retail partners.',
     },
     {
       icon: <Truck className="w-6 h-6 text-[#fdc826]" />,
-      title: 'Unbroken 4°C–8°C Cold Chain Logistics',
-      desc: 'Eggs degrade 7x faster at room temperatures. We chill and transport from farm gate to distributor hubs under calibrated climate control within 24 hours of lay.',
+      title: 'Bulk & B2B Supply',
+      desc: 'Reliable egg supply for hotels, restaurants, bakeries, caterers, supermarkets, institutions and other businesses.',
+    },
+    {
+      icon: <Award className="w-6 h-6 text-[#fdc826]" />,
+      title: 'Multiple Egg Varieties',
+      desc: 'White Eggs, Brown Eggs, Country Eggs and Quail Eggs.',
+    },
+    {
+      icon: <PackageSearch className="w-6 h-6 text-[#fdc826]" />,
+      title: 'Multiple Grades & Pack Sizes',
+      desc: 'Different egg sizes and pack formats designed for retail and commercial requirements.',
     },
   ];
 
-  const comparisonTable = [
-    {
-      feature: 'Packing Time from Lay',
-      proteinova: 'Within 6 hours',
-      commercial: '3 to 14 days typical',
-    },
-    {
-      feature: 'Haugh Freshness Rating',
-      proteinova: '86 - 94 Haugh (Grade AA)',
-      commercial: '60 - 72 Haugh (Grade A/B)',
-    },
-    {
-      feature: 'Antibiotic & Hormone Use',
-      proteinova: 'Strictly 0% Prophylactic',
-      commercial: 'Frequently unregulated',
-    },
-    {
-      feature: 'Flock Diet',
-      proteinova: 'Non-GMO grain, cold-pressed flaxseed, marigold',
-      commercial: 'Standard grain feed with synthetic yolk dyes',
-    },
-    {
-      feature: 'Cold-Chain Transport',
-      proteinova: 'Guaranteed 4°C - 8°C chilled transit',
-      commercial: 'Ambient open trucks in high summer heat',
-    },
-    {
-      feature: 'Salmonella Screening',
-      proteinova: 'Batch-wise PCR laboratory clearance',
-      commercial: 'Periodic random batch sampling',
-    },
+  const whyProteinova = [
+    'Quality-focused sourcing',
+    'Consistent egg grading',
+    'Hygienic handling & packing',
+    'Multiple egg varieties',
+    '6, 12 & 30 retail pack options',
+    'Bulk supply capability',
+    'Retail + B2B distribution model',
   ];
 
   return (
     <div className="w-full bg-[#ffffff] min-h-screen py-10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Hero Section */}
-        <div className="max-w-3xl mb-12">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#ecf7e9] text-[#073b2a] text-xs font-bold uppercase tracking-wider mb-3">
-            <ShieldCheck className="w-3.5 h-3.5" />
-            <span>Our Agricultural &amp; Nutritional Mission</span>
+        {/* Hero Section - About Proteinova */}
+        <div className="flex flex-col lg:flex-row gap-10 lg:gap-16 items-center mb-16">
+          <div className="flex-1">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#ecf7e9] text-[#073b2a] text-xs font-bold uppercase tracking-wider mb-3">
+              <ShieldCheck className="w-3.5 h-3.5" />
+              <span>About Proteinova</span>
+            </div>
+            <h1 className="font-headline text-3xl sm:text-4xl lg:text-5xl text-[#002418] font-extrabold tracking-tight mb-4">
+              Better Eggs. Better Everyday Nutrition.
+            </h1>
+            <p className="text-base sm:text-lg text-[#414944] leading-relaxed mb-4">
+              Proteinova Food Products Private Limited is a modern egg brand focused on making quality eggs more accessible to families, retailers and businesses. We work closely with trusted supply partners to source eggs and bring them through a structured process of selection, grading, hygienic packing and reliable distribution.
+            </p>
+            <p className="text-base sm:text-lg text-[#414944] leading-relaxed mb-4">
+              From convenient retail packs for everyday households to bulk egg supply for hotels, restaurants, bakeries, supermarkets and institutions, Proteinova is building a dependable egg distribution network designed around quality, consistency and convenience.
+            </p>
+            <p className="text-base sm:text-lg text-[#414944] leading-relaxed font-semibold text-[#073b2a]">
+              At Proteinova, we believe something as simple as an egg can play an important role in everyday nutrition.
+              <br />
+              Pure Protein. Pure Power.
+            </p>
           </div>
-          <h1 className="font-headline text-3xl sm:text-4xl lg:text-5xl text-[#002418] font-extrabold tracking-tight mb-4">
-            Re-Engineering Egg Quality from Farm Gate to the Kitchen.
-          </h1>
-          <p className="text-base sm:text-lg text-[#414944] leading-relaxed">
-            Proteinova was founded to bridge the critical gap between commercial egg production and clinical nutritional integrity. We believe that true nutrition begins in the flock’s biological habitat, ethical rearing, and scientifically audited farm gates.
+          <div className="flex-1 w-full lg:max-w-lg">
+            <div className="relative rounded-3xl overflow-hidden shadow-2xl border-4 border-white aspect-[4/3]">
+              <img 
+                src="/about_hero.jpg" 
+                alt="Fresh Proteinova Eggs in a Basket" 
+                className="w-full h-full object-cover"
+              />
+              <div className="absolute inset-0 border border-black/5 rounded-3xl pointer-events-none"></div>
+            </div>
+          </div>
+        </div>
+
+        {/* Our Story */}
+        <div className="bg-[#f6f7f5] rounded-3xl p-6 lg:p-10 mb-16 border border-slate-200/80">
+          <h2 className="font-headline text-2xl sm:text-3xl text-[#002418] font-bold tracking-tight mb-4">
+            Our Story: From a Daily Essential to a Trusted Brand
+          </h2>
+          <p className="text-sm sm:text-base text-[#414944] leading-relaxed mb-4">
+            Eggs are one of the most widely consumed sources of protein, yet customers and businesses often face challenges with consistent quality, grading, packaging and dependable supply.
+          </p>
+          <p className="text-sm sm:text-base text-[#414944] leading-relaxed mb-4">
+            Proteinova was created with a simple idea: <strong>To make buying quality eggs simpler, more reliable and more professional.</strong>
+          </p>
+          <p className="text-sm sm:text-base text-[#414944] leading-relaxed">
+            We are building an integrated model that connects sourcing, quality selection, grading, packing, warehousing, distribution and retail under one brand. Whether it is a family purchasing a 6, 12 or 30 egg pack or a business requiring eggs in larger volumes, our goal is to provide the right eggs for the right requirement.
           </p>
         </div>
 
-        {/* 4 Pillars Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
-          {pillars.map((pillar, idx) => (
-            <div
-              key={idx}
-              className="bg-[#f6f7f5] p-6 rounded-3xl border border-slate-200/80 flex flex-col justify-between hover:shadow-md transition-all"
-            >
-              <div>
+        {/* What We Do Grid */}
+        <div className="mb-16">
+          <h2 className="font-headline text-2xl sm:text-3xl text-[#002418] font-bold tracking-tight mb-2">
+            What We Do
+          </h2>
+          <p className="text-[#414944] mb-8">One Brand. Multiple Egg Solutions.</p>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {whatWeDo.map((item, idx) => (
+              <div
+                key={idx}
+                className="bg-[#f6f7f5] p-6 rounded-3xl border border-slate-200/80 flex flex-col hover:shadow-md transition-all"
+              >
                 <div className="w-12 h-12 rounded-2xl bg-[#073b2a] flex items-center justify-center mb-4 shadow-sm">
-                  {pillar.icon}
+                  {item.icon}
                 </div>
                 <h3 className="font-headline text-base font-bold text-[#002418] mb-2">
-                  {pillar.title}
+                  {item.title}
                 </h3>
-                <p className="text-xs sm:text-sm text-[#414944] leading-relaxed">
-                  {pillar.desc}
+                <p className="text-xs sm:text-sm text-[#414944] leading-relaxed flex-grow">
+                  {item.desc}
                 </p>
               </div>
-              <div className="mt-4 pt-3 border-t border-slate-200 flex items-center gap-1.5 text-xs font-semibold text-[#073b2a]">
-                <CheckCircle2 className="w-4 h-4 text-emerald-600" />
-                <span>Audited Standard</span>
-              </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
 
-        {/* Comparison Matrix */}
-        <div className="bg-[#ecf7e9] rounded-3xl p-6 lg:p-10 border border-[#dbe5d8] mb-16">
-          <div className="max-w-2xl mb-8">
-            <span className="text-xs text-[#765a00] font-bold uppercase tracking-wider block mb-1">
-              Quality Benchmarking
-            </span>
-            <h2 className="font-headline text-2xl sm:text-3xl text-[#002418] font-bold tracking-tight">
-              The Proteinova Difference vs. Commercial Eggs
-            </h2>
-            <p className="text-xs sm:text-sm text-[#414944] mt-2">
-              Compare our certified clinical parameters directly against standard wholesale market supply.
+        {/* Vision & Mission */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-16">
+          <div className="bg-[#ecf7e9] rounded-3xl p-6 lg:p-8 border border-[#dbe5d8]">
+            <div className="flex items-center gap-3 mb-4">
+              <div className="w-10 h-10 rounded-full bg-[#073b2a] flex items-center justify-center">
+                <Eye className="w-5 h-5 text-[#fdc826]" />
+              </div>
+              <h2 className="font-headline text-xl sm:text-2xl text-[#002418] font-bold">
+                Our Vision
+              </h2>
+            </div>
+            <h3 className="font-semibold text-[#073b2a] mb-2">To Build a Trusted Modern Egg Brand</h3>
+            <p className="text-sm text-[#414944] leading-relaxed mb-3">
+              Our vision is to build Proteinova into a trusted and accessible egg brand, serving households and businesses through a strong retail and distribution network.
+            </p>
+            <p className="text-sm text-[#414944] leading-relaxed">
+              We aim to make quality eggs easier to identify, easier to purchase and easier to source at scale.
             </p>
           </div>
+          <div className="bg-[#ecf7e9] rounded-3xl p-6 lg:p-8 border border-[#dbe5d8]">
+            <div className="flex items-center gap-3 mb-4">
+              <div className="w-10 h-10 rounded-full bg-[#073b2a] flex items-center justify-center">
+                <Target className="w-5 h-5 text-[#fdc826]" />
+              </div>
+              <h2 className="font-headline text-xl sm:text-2xl text-[#002418] font-bold">
+                Our Mission
+              </h2>
+            </div>
+            <p className="text-sm text-[#414944] leading-relaxed mb-4">
+              Our mission is to deliver:
+            </p>
+            <ul className="flex flex-wrap gap-2 mb-4">
+              {['Consistent Quality', 'Better Grading', 'Hygienic Packing', 'Reliable Supply', 'Convenient Access'].map((item, i) => (
+                <li key={i} className="bg-white px-3 py-1 rounded-full text-xs font-semibold text-[#073b2a] border border-[#dbe5d8] shadow-sm">
+                  {item}
+                </li>
+              ))}
+            </ul>
+            <p className="text-sm text-[#414944] leading-relaxed">
+              while continuously improving the way eggs move from source to shelf and from businesses to families.
+            </p>
+          </div>
+        </div>
 
-          <div className="overflow-x-auto">
-            <table className="w-full text-left text-xs sm:text-sm">
-              <thead>
-                <tr className="border-b border-[#073b2a]/15 text-[#002418]">
-                  <th className="py-3 px-4 font-bold uppercase tracking-wider">Quality Metric</th>
-                  <th className="py-3 px-4 font-bold uppercase tracking-wider bg-[#ffffff]/60 rounded-t-xl text-[#073b2a]">
-                    Proteinova Farm Standard
-                  </th>
-                  <th className="py-3 px-4 font-bold uppercase tracking-wider text-[#717974]">
-                    Generic Commodity Eggs
-                  </th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-[#073b2a]/10">
-                {comparisonTable.map((row, i) => (
-                  <tr key={i} className="hover:bg-white/40 transition-colors">
-                    <td className="py-3.5 px-4 font-semibold text-[#151e16]">
-                      {row.feature}
-                    </td>
-                    <td className="py-3.5 px-4 font-bold text-[#073b2a] bg-[#ffffff]/40">
-                      <span className="inline-flex items-center gap-1.5">
-                        <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
-                        <span>{row.proteinova}</span>
-                      </span>
-                    </td>
-                    <td className="py-3.5 px-4 text-[#717974]">
-                      {row.commercial}
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+        {/* Why Proteinova */}
+        <div className="bg-[#f6f7f5] rounded-3xl p-6 lg:p-10 border border-slate-200/80 mb-16">
+          <div className="max-w-2xl mb-8">
+            <h2 className="font-headline text-2xl sm:text-3xl text-[#002418] font-bold tracking-tight">
+              Why Proteinova?
+            </h2>
+            <p className="text-sm sm:text-base text-[#414944] mt-2 font-semibold">
+              Quality You Can See. Reliability You Can Count On.
+            </p>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {whyProteinova.map((reason, i) => (
+              <div key={i} className="flex items-center gap-3 bg-white p-4 rounded-xl border border-slate-100 shadow-sm transition-all hover:border-[#ecf7e9] hover:bg-[#ecf7e9]">
+                <CheckCircle2 className="w-5 h-5 text-emerald-600 shrink-0" />
+                <span className="text-sm font-semibold text-[#002418]">{reason}</span>
+              </div>
+            ))}
           </div>
         </div>
 

@@ -21,30 +21,28 @@ export const ContactView: React.FC = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    
+    const subject = `Contact Inquiry: ${formData.topic} - ${formData.name}`;
+    const body = `Name: ${formData.name}
+Phone: ${formData.phone}
+Email: ${formData.email}
+Topic: ${formData.topic}
+
+Message:
+${formData.message}
+`;
+
+    window.location.href = `mailto:proteinovafoods@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
     setSubmitted(true);
   };
 
   const hubs = [
     {
-      region: 'Western Operations Hub (HQ)',
+      region: 'Headquarters (HQ)',
       location: 'Proteinova Food Products Pvt. Ltd.',
-      address: 'Plot 42, Agro-Tech Corridor, MIDC Taloja, Navi Mumbai, Maharashtra 410208',
-      phone: '+91 (022) 4893-7200',
-      email: 'mumbai.hub@proteinova.in',
-    },
-    {
-      region: 'Northern Distribution Center',
-      location: 'Cold-Chain Logistics Complex',
-      address: 'Sector 34, IMT Manesar, Gurugram, Haryana 122051',
-      phone: '+91 (0124) 432-8900',
-      email: 'delhi.hub@proteinova.in',
-    },
-    {
-      region: 'Southern Regional Facility',
-      location: 'Bio-Agricultural Farm Gate',
-      address: 'KIADB Industrial Area, Malur, Bengaluru Rural, Karnataka 563130',
-      phone: '+91 (080) 6744-1100',
-      email: 'bengaluru.hub@proteinova.in',
+      address: '141/40c, Kurinji Tower, Salem Road, Namakkal, Tamil Nadu - 637001',
+      phone: '+91 9791220001',
+      email: 'connect@proteinova.in',
     },
   ];
 

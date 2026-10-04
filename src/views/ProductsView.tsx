@@ -23,12 +23,11 @@ export const ProductsView: React.FC<ProductsViewProps> = ({
   onSelectRecipeEggType,
   onNavigatePartner,
 }) => {
-  const [activeFilter, setActiveFilter] = useState<'all' | 'hen' | 'specialty' | 'liquid'>('all');
+  const [activeFilter, setActiveFilter] = useState<'all' | 'hen' | 'specialty'>('all');
 
   const filteredProducts = PRODUCTS.filter((p) => {
     if (activeFilter === 'hen') return p.eggTypeKey === 'brown' || p.eggTypeKey === 'white' || p.eggTypeKey === 'country';
     if (activeFilter === 'specialty') return p.eggTypeKey === 'duck' || p.eggTypeKey === 'quail';
-    if (activeFilter === 'liquid') return p.eggTypeKey === 'liquid';
     return true;
   });
 
@@ -52,10 +51,9 @@ export const ProductsView: React.FC<ProductsViewProps> = ({
         {/* Filter Pills */}
         <div className="flex items-center gap-2 mb-8 overflow-x-auto no-scrollbar pb-1">
           {[
-            { id: 'all', label: 'All Varieties (6)' },
+            { id: 'all', label: 'All Varieties (5)' },
             { id: 'hen', label: 'Heritage Hen Eggs' },
             { id: 'specialty', label: 'Duck & Quail Specialty' },
-            { id: 'liquid', label: 'Pure Liquid Albumen' },
           ].map((tab) => (
             <button
               key={tab.id}
@@ -200,7 +198,7 @@ export const ProductsView: React.FC<ProductsViewProps> = ({
             onClick={onNavigatePartner}
             className="whitespace-nowrap px-6 py-3.5 bg-[#fdc826] hover:bg-[#f4bf1b] text-[#002418] text-sm font-bold rounded-xl transition-all shadow-md cursor-pointer flex items-center gap-2 shrink-0"
           >
-            <span>Open Wholesale Calculator</span>
+            <span>Partner With Us</span>
             <ArrowRight className="w-4 h-4" />
           </button>
         </div>

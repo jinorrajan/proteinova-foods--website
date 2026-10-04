@@ -5,7 +5,7 @@ export interface Product {
   tagline: string;
   description: string;
   image: string;
-  eggTypeKey: 'white' | 'brown' | 'country' | 'duck' | 'quail' | 'liquid';
+  eggTypeKey: 'white' | 'brown' | 'country' | 'duck' | 'quail';
   haughUnits: number; // Quality/freshness metric (>72 is Grade AA)
   yolkColorScale: number; // DSM Yolk Fan 1-15 (13-14 is deep golden orange)
   proteinPerEgg: string;
@@ -32,7 +32,7 @@ export const PRODUCTS: Product[] = [
     tagline: 'Naturally enriched with Flaxseed Omega-3 and Vitamin E',
     description:
       'Harvested from certified antibiotic-free heritage hens raised on all-vegetarian grain rations. Celebrated for robust shell structural integrity and rich, plump, sunset-gold yolks.',
-    image: '/Brown.svg',
+    image: '/Brown.jpeg',
     eggTypeKey: 'brown',
     haughUnits: 88,
     yolkColorScale: 13,
@@ -67,7 +67,7 @@ export const PRODUCTS: Product[] = [
     tagline: 'High-albumin viscosity engineered for daily biological nutrition',
     description:
       'Pristine, laser-candled white shell eggs featuring a proud, jelly-tight inner albumen halo. The quintessential standard for precision baking, omelettes, and active family meal preps.',
-    image: '/White.svg',
+    image: '/White.jpeg',
     eggTypeKey: 'white',
     haughUnits: 86,
     yolkColorScale: 11,
@@ -102,7 +102,7 @@ export const PRODUCTS: Product[] = [
     tagline: 'Deep marigold yolks from hens with unlimited open-field sunlight',
     description:
       'Reared in sunlit herbal pastures where heritage indigenous flocks forage on natural botanicals, wild seeds, and beneficial insects. Yields deep crimson-amber yolks and intensely savory umami.',
-    image: '/Country.svg',
+    image: '/Country.jpeg',
     eggTypeKey: 'country',
     haughUnits: 92,
     yolkColorScale: 14,
@@ -137,7 +137,7 @@ export const PRODUCTS: Product[] = [
     tagline: 'Colossal yolks & massive albumin density for luxury culinary craft',
     description:
       'Approximately 30% larger than chicken eggs, duck eggs provide unparalleled fat-to-protein ratio and extraordinary foaming stability. Prized by master pastry chefs, pasta makers, and fine dining kitchens.',
-    image: '/Duck-Egg.svg',
+    image: '/Duck Egg.jpeg',
     eggTypeKey: 'duck',
     haughUnits: 94,
     yolkColorScale: 14,
@@ -172,7 +172,7 @@ export const PRODUCTS: Product[] = [
     tagline: 'Miniature superfood packed with dense micro-nutrients & zinc',
     description:
       'Dappled speckled shells hiding nutrient-dense golden spheres. Weighing roughly 10g each, they offer nearly 3x the vitamin B1, iron, and potassium per gram compared to standard hen eggs.',
-    image: '/Quails.svg',
+    image: '/Quails.jpeg',
     eggTypeKey: 'quail',
     haughUnits: 90,
     yolkColorScale: 12,
@@ -198,40 +198,5 @@ export const PRODUCTS: Product[] = [
       vitaminDMcg: 1.4,
       vitaminB12Mcg: 1.6,
     },
-  },
-  {
-    id: 'proteinova-pure-liquid-egg-whites',
-    name: 'Proteinova Clinical Pure Egg Whites (Pasteurized)',
-    badge: '100% Lean Fuel',
-    tagline: '0% Fat, 0% Cholesterol, 100% Bio-Available Albumin',
-    description:
-      'Gently flash-pasteurized liquid egg whites ready to pour straight from the spout. No shell cracking, no egg yolk waste, no mess. The gold standard for gym athletes, meal-prep athletes, and professional patisseries.',
-    image: '/Liquid-Egg.svg',
-    eggTypeKey: 'liquid',
-    haughUnits: 95,
-    yolkColorScale: 0,
-    proteinPerEgg: '10g / 100ml',
-    packOptions: [
-      { size: '500ml Bottle (16 egg whites)', count: 1, price: 160, sku: 'PROT-LQW-500' },
-      { size: '1000ml Bottle (32 egg whites)', count: 1, price: 290, sku: 'PROT-LQW-1000' },
-      { size: 'Pack of 4 x 1000ml (Athletic Pack)', count: 4, price: 1050, sku: 'PROT-LQW-4000' },
-    ],
-    keyHighlights: [
-      'Flash pasteurized at 57°C for food safety without protein denaturing',
-      'Safe to drink raw in smoothies or shakes',
-      'Whips up to high volume meringue effortlessly',
-      'Keeps 30 days unopened in 2-4°C refrigeration',
-    ],
-    certifications: ['FSSAI High Protein Verified', 'Microbiologically Screened', 'No Preservatives'],
-    idealFor: ['Power Protein Wraps', 'Bodybuilding Scrambles', 'Angel Food Cake', 'Whiskey Sours'],
-    nutritionalTable: {
-      energyKcal: 48,
-      proteinG: 10.5,
-      totalFatG: 0.1,
-      cholesterolMg: 0,
-      cholineMg: 1.1,
-      vitaminDMcg: 0,
-      vitaminB12Mcg: 0.1,
-    },
-  },
+  }
 ];

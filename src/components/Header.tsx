@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
-import { Bookmark, Menu, X, User } from 'lucide-react';
+import { Bookmark, Menu, X } from 'lucide-react';
 
 interface HeaderProps {
   currentTab: string;
   onNavigate: (tab: string) => void;
   savedCount: number;
   onOpenBookmarks: () => void;
-  onOpenProfile: () => void;
 }
 
 export const Header: React.FC<HeaderProps> = ({
@@ -14,7 +13,6 @@ export const Header: React.FC<HeaderProps> = ({
   onNavigate,
   savedCount,
   onOpenBookmarks,
-  onOpenProfile,
 }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -43,9 +41,8 @@ export const Header: React.FC<HeaderProps> = ({
         >
           <img
             alt="Proteinova Food Products Logo"
-            className="h-8 w-auto object-contain transition-transform group-hover:scale-105"
-            src="https://lh3.googleusercontent.com/aida/AEtjO1WgYfAftSS7MhJThrrpKVDFB185Qr0F3m-6MszTZJUSZITIf1CMCFEGeDFf02fDfRaE9H6ypaA5iXctK1EeCOkRbbnGW6rTQEWE89CN0f4wAWD43-S1bpViku9hbTKTOR_Ek7SxkIuWPNk_TYOjy4riWmKJPDXDAbprMBkFre4RZ4KSl90MtPXJkfhkHKVYjGzTUeDP_Hve2MGI-XxOG_U_RKKYG4fl3KE0WjXZDkqiuKY3VgRTBlhfRkow"
-            referrerPolicy="no-referrer"
+            className="h-10 w-auto object-contain transition-transform group-hover:scale-105"
+            src="/Minimalist Golden Egg Spiral Logo.png"
           />
           <span className="font-headline text-xl text-[#002418] tracking-tight font-extrabold hidden sm:inline-block">
             Proteinova
@@ -100,14 +97,7 @@ export const Header: React.FC<HeaderProps> = ({
             Partner With Us
           </button>
 
-          {/* User Profile Avatar */}
-          <button
-            onClick={onOpenProfile}
-            className="w-9 h-9 rounded-full bg-[#002418] text-white flex items-center justify-center hover:bg-[#073b2a] transition-all cursor-pointer shadow-sm"
-            aria-label="Account & Preferences"
-          >
-            <User className="w-4 h-4" />
-          </button>
+
 
           {/* Mobile Menu Button */}
           <button

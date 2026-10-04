@@ -1,46 +1,41 @@
 import React, { useState } from 'react';
 import {
   Building2,
-  Calculator,
   Truck,
   CheckCircle2,
   Send,
   ShieldCheck,
-  Package,
-  Layers,
-  PhoneCall,
   Clock,
 } from 'lucide-react';
 
 export const PartnerView: React.FC = () => {
-  const [eggType, setEggType] = useState('Farm-Fresh Brown');
-  const [cratesCount, setCratesCount] = useState<number>(10); // 30 eggs/crate
-  const [deliveryFrequency, setDeliveryFrequency] = useState('twice-weekly');
-  const [city, setCity] = useState('Mumbai');
+  const [city, setCity] = useState('');
+  const [partnershipType, setPartnershipType] = useState('Retailer');
   const [inquirySubmitted, setInquirySubmitted] = useState(false);
 
-  // Pricing calculations
-  // Base crate price approx ₹420 for 30 eggs
-  const basePricePerCrate =
-    eggType === 'Classic White'
-      ? 380
-      : eggType === 'Farm-Fresh Brown'
-      ? 420
-      : eggType === 'Country Free-Range'
-      ? 590
-      : 680; // Duck eggs
-
-  // Volume discount tiers
-  const discountPercent =
-    cratesCount >= 50 ? 18 : cratesCount >= 20 ? 12 : cratesCount >= 10 ? 8 : 0;
-
-  const totalRawPrice = basePricePerCrate * cratesCount;
-  const discountedPrice = Math.round(totalRawPrice * (1 - discountPercent / 100));
-  const savings = totalRawPrice - discountedPrice;
-  const totalEggs = cratesCount * 30;
-
-  const handleSubmitInquiry = (e: React.FormEvent) => {
+  const handleSubmitInquiry = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    
+    const formData = new FormData(e.currentTarget);
+    const businessName = formData.get('businessName') as string;
+    const contactPerson = formData.get('contactPerson') as string;
+    const phoneNumber = formData.get('phoneNumber') as string;
+    const email = formData.get('email') as string;
+    const requirements = formData.get('requirements') as string;
+    
+    const subject = `Partnership Inquiry: ${partnershipType} - ${businessName}`;
+    const body = `Partnership Type: ${partnershipType}
+Business Name: ${businessName}
+Contact Person: ${contactPerson}
+Phone Number: ${phoneNumber}
+Email: ${email}
+City: ${city}
+
+Special Packaging Requirements:
+${requirements || 'None'}
+`;
+    
+    window.location.href = `mailto:proteinovafoods@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
     setInquirySubmitted(true);
   };
 
@@ -51,7 +46,7 @@ export const PartnerView: React.FC = () => {
         <div className="max-w-3xl mb-10">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#ecf7e9] text-[#073b2a] text-xs font-bold uppercase tracking-wider mb-3">
             <Building2 className="w-3.5 h-3.5" />
-            <span>Institutional Supply &amp; B2B Wholesale</span>
+            <span>Institutional Supply & B2B Wholesale</span>
           </div>
           <h1 className="font-headline text-3xl sm:text-4xl lg:text-5xl text-[#002418] font-extrabold tracking-tight mb-4">
             Direct Farm-Gate Consignment for Premium Culinary Establishments.
@@ -61,146 +56,9 @@ export const PartnerView: React.FC = () => {
           </p>
         </div>
 
-        {/* 2-Column: Interactive Wholesale Calculator & Inquiry Form */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-16">
-          {/* Left: Interactive Consignment Calculator */}
-          <div className="lg:col-span-7 bg-[#f6f7f5] rounded-3xl p-6 sm:p-8 border border-slate-200">
-            <div className="flex items-center gap-3 mb-6">
-              <div className="w-10 h-10 rounded-xl bg-[#073b2a] text-white flex items-center justify-center">
-                <Calculator className="w-5 h-5 text-[#fdc826]" />
-              </div>
-              <div>
-                <h3 className="font-headline text-xl font-bold text-[#002418]">
-                  Wholesale Volume &amp; Consignment Calculator
-                </h3>
-                <p className="text-xs text-[#717974]">
-                  Simulate pallet pricing and automated refrigerated delivery schedules
-                </p>
-              </div>
-            </div>
-
-            <div className="space-y-5">
-              {/* Egg Variety */}
-              <div>
-                <label className="block text-xs font-bold text-[#002418] uppercase tracking-wider mb-2">
-                  Select Product Line
-                </label>
-                <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
-                  {['Classic White', 'Farm-Fresh Brown', 'Country Free-Range', 'Duck Eggs'].map((t) => (
-                    <button
-                      key={t}
-                      type="button"
-                      onClick={() => setEggType(t)}
-                      className={`p-2.5 rounded-xl text-center text-xs font-bold transition-all cursor-pointer border ${
-                        eggType === t
-                          ? 'bg-[#002418] text-white border-[#002418] shadow-xs'
-                          : 'bg-white text-[#414944] border-slate-200 hover:border-slate-300'
-                      }`}
-                    >
-                      {t}
-                    </button>
-                  ))}
-                </div>
-              </div>
-
-              {/* Crates Slider / Stepper */}
-              <div>
-                <div className="flex items-center justify-between mb-2">
-                  <label className="text-xs font-bold text-[#002418] uppercase tracking-wider">
-                    Order Volume (30-Egg Crates)
-                  </label>
-                  <span className="font-mono text-sm font-bold text-[#073b2a]">
-                    {cratesCount} Crates ({totalEggs.toLocaleString()} Eggs)
-                  </span>
-                </div>
-                <input
-                  type="range"
-                  min="5"
-                  max="100"
-                  step="5"
-                  value={cratesCount}
-                  onChange={(e) => setCratesCount(Number(e.target.value))}
-                  className="w-full accent-[#073b2a] cursor-pointer"
-                />
-                <div className="flex justify-between text-[10px] text-[#717974] mt-1">
-                  <span>5 crates (150 eggs)</span>
-                  <span>20 crates (600 eggs)</span>
-                  <span>50 crates (1,500 eggs)</span>
-                  <span>100 crates (Pallet)</span>
-                </div>
-              </div>
-
-              {/* City & Delivery Frequency */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div>
-                  <label className="block text-xs font-bold text-[#002418] uppercase tracking-wider mb-1.5">
-                    Hub Destination
-                  </label>
-                  <select
-                    value={city}
-                    onChange={(e) => setCity(e.target.value)}
-                    className="w-full bg-white border border-slate-200 px-3 py-2.5 rounded-xl text-xs sm:text-sm text-[#151e16] focus:outline-none focus:ring-2 focus:ring-[#073b2a]/30"
-                  >
-                    <option value="Mumbai">Mumbai &amp; MMR</option>
-                    <option value="Bengaluru">Bengaluru &amp; Mysore</option>
-                    <option value="Delhi NCR">Delhi NCR &amp; Gurgaon</option>
-                    <option value="Hyderabad">Hyderabad &amp; Secunderabad</option>
-                    <option value="Pune">Pune &amp; Lonavala</option>
-                  </select>
-                </div>
-
-                <div>
-                  <label className="block text-xs font-bold text-[#002418] uppercase tracking-wider mb-1.5">
-                    Dispatch Cadence
-                  </label>
-                  <select
-                    value={deliveryFrequency}
-                    onChange={(e) => setDeliveryFrequency(e.target.value)}
-                    className="w-full bg-white border border-slate-200 px-3 py-2.5 rounded-xl text-xs sm:text-sm text-[#151e16] focus:outline-none focus:ring-2 focus:ring-[#073b2a]/30"
-                  >
-                    <option value="daily">Daily Chilled Delivery (6 AM)</option>
-                    <option value="twice-weekly">Twice Weekly (Tue / Fri)</option>
-                    <option value="weekly">Weekly Bulk Consignment</option>
-                  </select>
-                </div>
-              </div>
-
-              {/* Price Calculation Output Box */}
-              <div className="p-5 rounded-2xl bg-[#ecf7e9] border border-[#bbeed5] space-y-3">
-                <div className="flex items-center justify-between text-xs text-[#414944]">
-                  <span>Catalog Rate ({cratesCount} × ₹{basePricePerCrate}):</span>
-                  <span className="font-mono line-through">₹{totalRawPrice.toLocaleString()}</span>
-                </div>
-                {discountPercent > 0 && (
-                  <div className="flex items-center justify-between text-xs font-bold text-[#765a00]">
-                    <span>Institutional Tier Discount ({discountPercent}%):</span>
-                    <span className="font-mono">-₹{savings.toLocaleString()}</span>
-                  </div>
-                )}
-                <div className="pt-2 border-t border-[#bbeed5] flex items-center justify-between">
-                  <div>
-                    <span className="text-xs uppercase font-bold text-[#002418] block">
-                      Estimated Consignment Total
-                    </span>
-                    <span className="text-[11px] text-[#717974]">
-                      Includes Chilled Cold-Chain &amp; Farm Gate Inspection
-                    </span>
-                  </div>
-                  <div className="text-right">
-                    <div className="font-headline text-2xl font-extrabold text-[#073b2a]">
-                      ₹{discountedPrice.toLocaleString()}
-                    </div>
-                    <span className="text-[10px] text-[#717974]">
-                      (₹{(discountedPrice / totalEggs).toFixed(2)} / egg)
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Right: Institutional Partner Inquiry Form */}
-          <div className="lg:col-span-5 bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-sm flex flex-col justify-between">
+        {/* Inquiry Form */}
+        <div className="max-w-2xl mb-16">
+          <div className="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-sm flex flex-col justify-between">
             {inquirySubmitted ? (
               <div className="py-12 text-center flex flex-col items-center justify-center space-y-4">
                 <div className="w-16 h-16 rounded-full bg-[#ecf7e9] text-[#073b2a] flex items-center justify-center">
@@ -231,11 +89,34 @@ export const PartnerView: React.FC = () => {
                 </div>
 
                 <div>
+                  <label className="block text-xs font-bold text-[#002418] uppercase tracking-wider mb-2">
+                    Partnership Type *
+                  </label>
+                  <div className="grid grid-cols-2 gap-2">
+                    {['Retailer', 'Distributor', 'Franchise', 'B2B/Corporate Supply'].map((type) => (
+                      <button
+                        key={type}
+                        type="button"
+                        onClick={() => setPartnershipType(type)}
+                        className={`p-2.5 rounded-xl text-center text-[11px] sm:text-xs font-bold transition-all cursor-pointer border ${
+                          partnershipType === type
+                            ? 'bg-[#002418] text-white border-[#002418] shadow-xs'
+                            : 'bg-[#f6f7f5] text-[#414944] border-slate-200 hover:border-slate-300'
+                        }`}
+                      >
+                        {type}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
+                <div>
                   <label className="block text-xs font-bold text-[#002418] uppercase tracking-wider mb-1">
                     Business / Hotel / Bakery Name *
                   </label>
                   <input
                     type="text"
+                    name="businessName"
                     required
                     placeholder="e.g. The Grand Sourdough Bakery"
                     className="w-full bg-[#f6f7f5] border border-slate-200 px-3.5 py-2 rounded-xl text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-[#073b2a]/30"
@@ -249,6 +130,7 @@ export const PartnerView: React.FC = () => {
                     </label>
                     <input
                       type="text"
+                      name="contactPerson"
                       required
                       placeholder="Chef / Procurement Mgr"
                       className="w-full bg-[#f6f7f5] border border-slate-200 px-3.5 py-2 rounded-xl text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-[#073b2a]/30"
@@ -260,6 +142,7 @@ export const PartnerView: React.FC = () => {
                     </label>
                     <input
                       type="tel"
+                      name="phoneNumber"
                       required
                       placeholder="+91 98765 43210"
                       className="w-full bg-[#f6f7f5] border border-slate-200 px-3.5 py-2 rounded-xl text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-[#073b2a]/30"
@@ -273,8 +156,23 @@ export const PartnerView: React.FC = () => {
                   </label>
                   <input
                     type="email"
+                    name="email"
                     required
                     placeholder="procurement@bakery.com"
+                    className="w-full bg-[#f6f7f5] border border-slate-200 px-3.5 py-2 rounded-xl text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-[#073b2a]/30"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-xs font-bold text-[#002418] uppercase tracking-wider mb-1">
+                    City *
+                  </label>
+                  <input
+                    type="text"
+                    required
+                    value={city}
+                    onChange={(e) => setCity(e.target.value)}
+                    placeholder="e.g. Mumbai"
                     className="w-full bg-[#f6f7f5] border border-slate-200 px-3.5 py-2 rounded-xl text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-[#073b2a]/30"
                   />
                 </div>
@@ -284,6 +182,7 @@ export const PartnerView: React.FC = () => {
                     Special Packaging Requirements
                   </label>
                   <textarea
+                    name="requirements"
                     rows={2}
                     placeholder="e.g. Need 30-egg plastic stackable crates, delivery between 5 AM - 7 AM"
                     className="w-full bg-[#f6f7f5] border border-slate-200 p-3 rounded-xl text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-[#073b2a]/30"
@@ -296,12 +195,12 @@ export const PartnerView: React.FC = () => {
                     className="w-full py-3 px-4 rounded-xl bg-[#002418] hover:bg-[#073b2a] text-white text-xs sm:text-sm font-bold transition-all cursor-pointer flex items-center justify-center gap-2 shadow-md"
                   >
                     <Send className="w-4 h-4 text-[#fdc826]" />
-                    <span>Request Rate Card &amp; Sample Crate</span>
+                    <span>Request Rate Card & Sample Crate</span>
                   </button>
                 </div>
 
                 <p className="text-[10px] text-[#717974] text-center">
-                  NDA &amp; Quality SLAs provided. All shipments include Batch COA (Certificate of Analysis).
+                  NDA & Quality SLAs provided. All shipments include Batch COA (Certificate of Analysis).
                 </p>
               </form>
             )}
