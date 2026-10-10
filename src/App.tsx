@@ -67,9 +67,90 @@ export default function App() {
     }
   };
 
-  // Detect recipe parameter from URL on initial load or popstate
+  // Map of tab IDs to canonical URL pathnames
+  const tabToPath: Record<string, string> = {
+    'home': '/',
+    'about-us': '/about',
+    'products': '/products',
+    'recipes': '/recipes',
+    'partner-with-us': '/partner',
+    'contact-us': '/contact',
+    'privacy-policy': '/privacypolicy',
+    'terms-of-supply': '/termsofsupply',
+    'food-safety': '/foodsafety',
+  };
+
+  // Resolve current route from window.location pathname & query
+  const getTabFromLocation = (): string => {
+    try {
+      const path = window.location.pathname.toLowerCase().replace(/\/$/, '') || '/';
+      const hash = window.location.hash.toLowerCase().replace(/^#\/?/, '');
+      
+      // Match pathnames
+      if (path === '/privacypolicy' || path === '/privacy-policy' || hash === 'privacypolicy' || hash === 'privacy-policy') {
+        return 'privacy-policy';
+      }
+      if (path === '/termsofsupply' || path === '/terms-of-supply' || path === '/terms' || hash === 'termsofsupply' || hash === 'terms-of-supply' || hash === 'terms') {
+        return 'terms-of-supply';
+      }
+      if (path === '/foodsafety' || path === '/food-safety' || hash === 'foodsafety' || hash === 'food-safety') {
+        return 'food-safety';
+      }
+      if (path === '/about' || path === '/about-us' || hash === 'about') {
+        return 'about-us';
+      }
+      if (path === '/products' || hash === 'products') {
+        return 'products';
+      }
+      if (path === '/recipes' || hash === 'recipes') {
+        return 'recipes';
+      }
+      if (path === '/partner' || path === '/partner-with-us' || hash === 'partner') {
+        return 'partner-with-us';
+      }
+      if (path === '/contact' || path === '/contact-us' || hash === 'contact') {
+        return 'contact-us';
+      }
+
+      // Query param fallback (?page=privacypolicy)
+      const params = new URLSearchParams(window.location.search);
+      const pageParam = params.get('page');
+      if (pageParam && (pageParam === 'privacypolicy' || pageParam === 'privacy-policy')) return 'privacy-policy';
+      if (pageParam && (pageParam === 'termsofsupply' || pageParam === 'terms-of-supply')) return 'terms-of-supply';
+      if (pageParam && (pageParam === 'foodsafety' || pageParam === 'food-safety')) return 'food-safety';
+    } catch {}
+    return 'home';
+  };
+
+  // Navigation handler with browser history pushState
+  const handleNavigate = (tab: string, replace = false) => {
+    setCurrentTab(tab);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+
+    try {
+      const targetPath = tabToPath[tab] || '/';
+      const url = new URL(window.location.href);
+      url.pathname = targetPath;
+      if (tab !== 'recipes') {
+        url.searchParams.delete('recipe');
+      }
+      if (replace) {
+        window.history.replaceState({ tab }, '', url.toString());
+      } else {
+        window.history.pushState({ tab }, '', url.toString());
+      }
+    } catch {
+      // Fallback
+    }
+  };
+
+  // Sync route on initial load and browser back/forward buttons
   React.useEffect(() => {
-    const handleUrlRecipe = () => {
+    const syncRouteFromLocation = () => {
+      const resolvedTab = getTabFromLocation();
+      setCurrentTab(resolvedTab);
+
+      // Also check recipe query param if on recipes tab
       try {
         const params = new URLSearchParams(window.location.search);
         let recipeId = params.get('recipe');
@@ -79,18 +160,15 @@ export default function App() {
         if (recipeId) {
           const matched = RECIPES.find((r) => r.id === recipeId);
           if (matched) {
-            setCurrentTab('recipes');
             setSelectedRecipe(matched);
           }
         }
-      } catch {
-        // Fallback
-      }
+      } catch {}
     };
 
-    handleUrlRecipe();
-    window.addEventListener('popstate', handleUrlRecipe);
-    return () => window.removeEventListener('popstate', handleUrlRecipe);
+    syncRouteFromLocation();
+    window.addEventListener('popstate', syncRouteFromLocation);
+    return () => window.removeEventListener('popstate', syncRouteFromLocation);
   }, []);
 
   const savedRecipesList = RECIPES.filter((r) => savedRecipeIds.has(r.id));
@@ -100,7 +178,7 @@ export default function App() {
       {/* Top Navigation */}
       <Header
         currentTab={currentTab}
-        onNavigate={(tab) => setCurrentTab(tab)}
+        onNavigate={(tab) => handleNavigate(tab)}
         savedCount={savedRecipeIds.size}
         onOpenBookmarks={() => setIsBookmarksOpen(true)}
       />
@@ -113,27 +191,27 @@ export default function App() {
             onToggleBookmark={handleToggleBookmark}
             savedRecipeIds={savedRecipeIds}
             onOpenSubmitModal={() => setIsSubmitModalOpen(true)}
-            onNavigateHome={() => setCurrentTab('home')}
+            onNavigateHome={() => handleNavigate('home')}
           />
         )}
 
         {currentTab === 'home' && (
           <HomeView
-            onNavigate={(tab) => setCurrentTab(tab)}
+            onNavigate={(tab) => handleNavigate(tab)}
             onOpenRecipe={(recipe) => handleOpenRecipe(recipe)}
           />
         )}
 
         {currentTab === 'products' && (
           <ProductsView
-            onNavigatePartner={() => setCurrentTab('partner-with-us')}
+            onNavigatePartner={() => handleNavigate('partner-with-us')}
           />
         )}
 
         {currentTab === 'about-us' && (
           <AboutView
-            onNavigateRecipes={() => setCurrentTab('recipes')}
-            onNavigateProducts={() => setCurrentTab('products')}
+            onNavigateRecipes={() => handleNavigate('recipes')}
+            onNavigateProducts={() => handleNavigate('products')}
           />
         )}
 
@@ -144,24 +222,15 @@ export default function App() {
         {['privacy-policy', 'terms-of-supply', 'food-safety'].includes(currentTab) && (
           <LegalView
             activeSection={currentTab as LegalTabType}
-            onSectionChange={(tab) => {
-              setCurrentTab(tab);
-              window.scrollTo({ top: 0, behavior: 'smooth' });
-            }}
-            onNavigateHome={() => {
-              setCurrentTab('home');
-              window.scrollTo({ top: 0, behavior: 'smooth' });
-            }}
-            onNavigateContact={() => {
-              setCurrentTab('contact-us');
-              window.scrollTo({ top: 0, behavior: 'smooth' });
-            }}
+            onSectionChange={(tab) => handleNavigate(tab)}
+            onNavigateHome={() => handleNavigate('home')}
+            onNavigateContact={() => handleNavigate('contact-us')}
           />
         )}
       </main>
 
       {/* Footer */}
-      <Footer onNavigate={(tab) => setCurrentTab(tab)} />
+      <Footer onNavigate={(tab) => handleNavigate(tab)} />
 
       {/* Floating Interactive Culinary Concierge Chat - Only shown on Recipes screen */}
       {currentTab === 'recipes' && <ChatDrawer />}

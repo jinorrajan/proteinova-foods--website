@@ -106,24 +106,36 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
         <div className="pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-[#76a68f]">
           <p>© {new Date().getFullYear()} Proteinova Food Products Private Limited. All rights reserved.</p>
           <div className="flex flex-wrap gap-6">
-            <span 
-              onClick={() => handleNav('privacy-policy')}
+            <a 
+              href="/privacypolicy"
+              onClick={(e) => {
+                e.preventDefault();
+                handleNav('privacy-policy');
+              }}
               className="hover:text-white transition-colors cursor-pointer"
             >
               Privacy Policy
-            </span>
-            <span 
-              onClick={() => handleNav('terms-of-supply')}
+            </a>
+            <a 
+              href="/termsofsupply"
+              onClick={(e) => {
+                e.preventDefault();
+                handleNav('terms-of-supply');
+              }}
               className="hover:text-white transition-colors cursor-pointer"
             >
               Terms of Supply
-            </span>
-            <span 
-              onClick={() => handleNav('food-safety')}
+            </a>
+            <a 
+              href="/foodsafety"
+              onClick={(e) => {
+                e.preventDefault();
+                handleNav('food-safety');
+              }}
               className="hover:text-white transition-colors cursor-pointer"
             >
               Food Safety Standards
-            </span>
+            </a>
           </div>
         </div>
       </div>
