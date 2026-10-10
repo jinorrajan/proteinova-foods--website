@@ -10,6 +10,7 @@ import { RecipeModal } from './components/RecipeModal';
 import { SubmitRecipeModal } from './components/SubmitRecipeModal';
 import { BookmarksDrawer } from './components/BookmarksDrawer';
 import { ChatDrawer } from './components/ChatDrawer';
+import { LegalView, LegalTabType } from './views/LegalView';
 import { RecipesView } from './views/RecipesView';
 import { HomeView } from './views/HomeView';
 import { ProductsView } from './views/ProductsView';
@@ -139,6 +140,24 @@ export default function App() {
         {currentTab === 'partner-with-us' && <PartnerView />}
 
         {currentTab === 'contact-us' && <ContactView />}
+
+        {['privacy-policy', 'terms-of-supply', 'food-safety'].includes(currentTab) && (
+          <LegalView
+            activeSection={currentTab as LegalTabType}
+            onSectionChange={(tab) => {
+              setCurrentTab(tab);
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }}
+            onNavigateHome={() => {
+              setCurrentTab('home');
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }}
+            onNavigateContact={() => {
+              setCurrentTab('contact-us');
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }}
+          />
+        )}
       </main>
 
       {/* Footer */}
