@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Privacy Policy - Proteinova Food Products & Proteinova Connect</title>
+  <meta name="description" content="Official Privacy Policy and Data Protection Notice for Proteinova Food Products Private Limited and the Proteinova Connect mobile application.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://proteinova.in/privacypolicy">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background-color: #f8faf9;
+      color: #1f2937;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+    h1, h2, h3, h4 {
+      font-family: 'Manrope', 'Inter', sans-serif;
+      color: #002418;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+    header {
+      background: #ffffff;
+      border-bottom: 1px solid rgba(7, 59, 42, 0.1);
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      box-shadow: 0 1px 6px rgba(7, 59, 42, 0.04);
+    }
+    .header-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 16px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .brand-link {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: #073b2a;
+      font-weight: 800;
+      font-size: 1.25rem;
+    }
+    .brand-logo {
+      height: 40px;
+      width: auto;
+    }
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 16px;
+      border-radius: 10px;
+      font-size: 0.875rem;
+      font-weight: 600;
+      text-decoration: none;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      border: none;
+    }
+    .btn-secondary {
+      background: #ecf7e9;
+      color: #073b2a;
+      border: 1px solid #bbeed5;
+    }
+    .btn-secondary:hover {
+      background: #dcf2d7;
+    }
+    .btn-primary {
+      background: #073b2a;
+      color: #ffffff;
+    }
+    .btn-primary:hover {
+      background: #002418;
+    }
+    .hero {
+      background: linear-gradient(180deg, #073b2a 0%, #0a4d37 100%);
+      color: #ffffff;
+      padding: 56px 24px 64px;
+      border-bottom: 2px solid #002418;
+    }
+    .hero-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 12px;
+      background: rgba(0, 36, 24, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 9999px;
+      color: #fdc826;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 16px;
+    }
+    .hero h1 {
+      color: #ffffff;
+      font-size: 2.5rem;
+      line-height: 1.2;
+      margin-bottom: 12px;
+    }
+    .hero p {
+      color: #bbeed5;
+      font-size: 1.1rem;
+      max-width: 800px;
+    }
+    .container {
+      max-width: 1200px;
+      margin: -32px auto 60px;
+      padding: 0 24px;
+      display: grid;
+      grid-template-columns: 340px 1fr;
+      gap: 32px;
+      align-items: start;
+    }
+    @media (max-width: 900px) {
+      .container {
+        grid-template-columns: 1fr;
+        margin-top: -16px;
+      }
+      .hero h1 {
+        font-size: 2rem;
+      }
+    }
+    .card {
+      background: #ffffff;
+      border-radius: 16px;
+      border: 1px solid rgba(203, 213, 225, 0.8);
+      padding: 24px;
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+      margin-bottom: 24px;
+    }
+    .sidebar-title {
+      font-size: 0.8rem;
+      font-weight: 800;
+      color: #073b2a;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .meta-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      font-size: 0.875rem;
+    }
+    .meta-label {
+      font-size: 0.75rem;
+      color: #64748b;
+      font-weight: 600;
+      display: block;
+      margin-bottom: 2px;
+    }
+    .meta-value {
+      font-weight: 700;
+      color: #002418;
+    }
+    .app-badge-box {
+      background: #f0fdf4;
+      border: 1px solid #bbf7d0;
+      border-radius: 14px;
+      padding: 18px;
+    }
+    .app-badge-box h3 {
+      font-size: 0.95rem;
+      margin-bottom: 6px;
+      color: #166534;
+    }
+    .app-badge-box p {
+      font-size: 0.8rem;
+      color: #15803d;
+      line-height: 1.5;
+    }
+    .main-doc {
+      background: #ffffff;
+      border-radius: 16px;
+      border: 1px solid rgba(203, 213, 225, 0.8);
+      padding: 40px;
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+    }
+    .doc-header {
+      border-bottom: 1px solid #e2e8f0;
+      padding-bottom: 24px;
+      margin-bottom: 32px;
+    }
+    .doc-ref {
+      font-size: 0.75rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: #073b2a;
+      margin-bottom: 6px;
+    }
+    .doc-header h2 {
+      font-size: 2rem;
+      line-height: 1.25;
+      margin-bottom: 8px;
+    }
+    .doc-date {
+      font-size: 0.875rem;
+      color: #64748b;
+    }
+    .section {
+      margin-bottom: 36px;
+    }
+    .section-title {
+      font-size: 1.25rem;
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .section-num {
+      width: 30px;
+      height: 30px;
+      border-radius: 8px;
+      background: #ecf7e9;
+      color: #073b2a;
+      font-size: 0.85rem;
+      font-weight: 800;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    p {
+      margin-bottom: 14px;
+      color: #374151;
+      font-size: 0.95rem;
+    }
+    ul {
+      margin-left: 20px;
+      margin-bottom: 16px;
+      color: #374151;
+    }
+    li {
+      margin-bottom: 8px;
+      font-size: 0.95rem;
+    }
+    .info-box {
+      background: #f8faf9;
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      padding: 16px 20px;
+      margin: 16px 0;
+    }
+    .info-box strong {
+      color: #002418;
+    }
+    .perm-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 14px;
+      margin-top: 14px;
+    }
+    .perm-item {
+      padding: 14px;
+      background: #f8faf9;
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+    }
+    .perm-name {
+      font-weight: 700;
+      font-size: 0.875rem;
+      color: #073b2a;
+      margin-bottom: 4px;
+    }
+    .perm-desc {
+      font-size: 0.8rem;
+      color: #64748b;
+    }
+    .contact-card {
+      background: #f0fdf4;
+      border: 1px solid #bbf7d0;
+      border-radius: 14px;
+      padding: 24px;
+      margin-top: 24px;
+    }
+    .contact-card h4 {
+      color: #166534;
+      font-size: 1.05rem;
+      margin-bottom: 8px;
+    }
+    footer {
+      background: #002418;
+      color: #bbeed5;
+      padding: 32px 24px;
+      text-align: center;
+      font-size: 0.875rem;
+    }
+    footer a {
+      color: #fdc826;
+      text-decoration: none;
+    }
+    @media print {
+      header, .hero, .sidebar-col, footer, .btn {
+        display: none !important;
+      }
+      .container {
+        display: block !important;
+        margin: 0 !important;
+        padding: 0 !important;
+      }
+      .main-doc {
+        border: none !important;
+        box-shadow: none !important;
+        padding: 0 !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Header Navigation -->
+  <header>
+    <div class="header-inner">
+      <a href="/" class="brand-link" title="Proteinova Foods">
+        <img src="/Minimalist Golden Egg Spiral Logo.png" alt="Proteinova Logo" class="brand-logo">
+        <span>Proteinova</span>
+      </a>
+      <div class="header-actions">
+        <a href="/" class="btn btn-secondary">← Back to Website</a>
+        <button onclick="window.print()" class="btn btn-primary">Print Policy</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Header -->
+  <section class="hero">
+    <div class="hero-inner">
+      <div class="badge">Official Legal & Compliance Portal</div>
+      <h1>Proteinova Privacy Policy</h1>
+      <p>Master Privacy Policy & Data Protection Notice for Proteinova Food Products Private Limited and the <strong>Proteinova Connect</strong> mobile application.</p>
+    </div>
+  </section>
+
+  <!-- Main Container -->
+  <div class="container">
+    <!-- Left Sidebar -->
+    <aside class="sidebar-col">
+      <!-- Corporate Entity Card -->
+      <div class="card">
+        <div class="sidebar-title">Corporate Legal Entity</div>
+        <ul class="meta-list">
+          <li>
+            <span class="meta-label">Registered Entity</span>
+            <span class="meta-value">Proteinova Food Products Pvt. Ltd.</span>
+          </li>
+          <li>
+            <span class="meta-label">Applicable Mobile Application</span>
+            <span class="meta-value">Proteinova Connect (Android)</span>
+          </li>
+          <li>
+            <span class="meta-label">Governing Jurisdiction</span>
+            <span class="meta-value">Republic of India (State of Tamil Nadu)</span>
+          </li>
+          <li>
+            <span class="meta-label">FSSAI Status</span>
+            <span class="meta-value">Central License Standards Compliant</span>
+          </li>
+          <li>
+            <span class="meta-label">Quality Certification</span>
+            <span class="meta-value">ISO 22000:2018 Certified Operations</span>
+          </li>
+          <li>
+            <span class="meta-label">Effective Revision Date</span>
+            <span class="meta-value">October 2026</span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- App Notice for Google Play -->
+      <div class="app-badge-box card">
+        <h3>Google Play Store Compliance</h3>
+        <p>This privacy policy discloses all data collection, permissions, and security measures applied across the <strong>Proteinova Connect</strong> mobile software and web distribution systems.</p>
+      </div>
+
+      <!-- Grievance Card -->
+      <div class="card">
+        <div class="sidebar-title">Grievance & Support Officer</div>
+        <p style="font-size: 0.85rem; color: #4b5563; margin-bottom: 12px;">
+          For privacy inquiries, account deletion requests, or data rectification, contact our compliance office:
+        </p>
+        <p style="font-size: 0.875rem; font-weight: 700; color: #073b2a; margin-bottom: 4px;">compliance@proteinovafoods.com</p>
+        <p style="font-size: 0.8rem; color: #6b7280;">Coimbatore & Chennai Operations, Tamil Nadu, India</p>
+      </div>
+    </aside>
+
+    <!-- Right Column: Full Privacy Document -->
+    <main class="main-doc">
+      <div class="doc-header">
+        <div class="doc-ref">Corporate Document Ref: PFP-POL-PRV-2026.01</div>
+        <h2>Master Privacy Policy & Mobile App Data Safety Notice</h2>
+        <div class="doc-date">Last Revised: October 2026 | Covers Proteinova Web Services & Proteinova Connect Android App</div>
+      </div>
+
+      <!-- Section 1 -->
+      <section class="section">
+        <h3 class="section-title">
+          <span class="section-num">1</span>
+          Preamble & Regulatory Framework
+        </h3>
+        <p>
+          Proteinova Food Products Private Limited (hereinafter referred to as <strong>“Proteinova”</strong>, <strong>“we”</strong>, <strong>“us”</strong>, or <strong>“our”</strong>) operates the official web portal at <strong>proteinova.in</strong>, associated supply portals, and the <strong>Proteinova Connect</strong> Android mobile application.
+        </p>
+        <p>
+          This Privacy Policy governs the collection, processing, storage, and transmission of personal and operational data collected from retail consumers, wholesale B2B partners, branch managers, delivery operators, and app users. It complies with the <strong>Digital Personal Data Protection Act, 2023 (DPDP Act)</strong>, the <strong>Information Technology Act, 2000</strong>, and <strong>Google Play Developer Distribution Policies</strong>.
+        </p>
+      </section>
+
+      <!-- Section 2 -->
+      <section class="section">
+        <h3 class="section-title">
+          <span class="section-num">2</span>
+          Information We Collect in the App and Web Services
+        </h3>
+        <p>
+          We collect only information strictly necessary for poultry farm distribution, inventory branch transfers, order fulfillment, and operational safety:
+        </p>
+        <div class="info-box">
+          <p><strong>A. Account & Profile Information:</strong> Full name, verified mobile phone number, email address, corporate branch assignment, and role credentials created for authorized branch and wholesale access.</p>
+          <p><strong>B. Commercial & Logistics Data:</strong> Goods & Services Tax Identification Number (GSTIN), FSSAI license numbers, dispatch depot locations, branch transfer records, egg crate batches, and consignment receipts.</p>
+          <p><strong>C. Technical & Diagnostic Telemetry:</strong> Device model, operating system version, app build version, IP address, connection status, crash logs, and performance metrics required to ensure smooth operational uptime.</p>
+        </div>
+      </section>
+
+      <!-- Section 3 -->
+      <section class="section">
+        <h3 class="section-title">
+          <span class="section-num">3</span>
+          Mobile Device Permissions Requested (Proteinova Connect)
+        </h3>
+        <p>
+          The <strong>Proteinova Connect</strong> Android application may request access to specific device features solely to fulfill core operational functions:
+        </p>
+        <div class="perm-grid">
+          <div class="perm-item">
+            <div class="perm-name">📷 Camera Access</div>
+            <div class="perm-desc">Used exclusively for optical barcode/QR scanning of egg crates and uploading physical delivery verification photos.</div>
+          </div>
+          <div class="perm-item">
+            <div class="perm-name">📍 Location (Coarse / Fine)</div>
+            <div class="perm-desc">Used for verifying arrival at authorized branch depots and optimizing cold-chain refrigerated delivery route transfers.</div>
+          </div>
+          <div class="perm-item">
+            <div class="perm-name">💾 Storage / Files</div>
+            <div class="perm-desc">Used to download, store, and view PDF tax invoices, dispatch slips, and inspection audit certificates.</div>
+          </div>
+          <div class="perm-item">
+            <div class="perm-name">🌐 Internet & Network State</div>
+            <div class="perm-desc">Required to synchronize stock levels, verify active login tokens, and update real-time branch transfer hub records.</div>
+          </div>
+        </div>
+        <p style="margin-top: 14px; font-size: 0.85rem; color: #64748b;">
+          * Note: You may grant or deny permissions via your Android system settings. Denying permissions will not break unrelated features.
+        </p>
+      </section>
+
+      <!-- Section 4 -->
+      <section class="section">
+        <h3 class="section-title">
+          <span class="section-num">4</span>
+          Purpose of Data Processing
+        </h3>
+        <p>Data collected through Proteinova Connect and web systems is used exclusively for:</p>
+        <ul>
+          <li>Facilitating scheduled refrigerated deliveries, order tracking, and farm-gate supply operations.</li>
+          <li>Managing branch-to-branch egg transfers, stock audits, and inventory reconciliation.</li>
+          <li>Ensuring farm-to-table food safety traceability in strict adherence to statutory FSSAI and ISO 22000 quality mandates.</li>
+          <li>Detecting, preventing, and troubleshooting crashes or fraudulent system operations.</li>
+        </ul>
+      </section>
+
+      <!-- Section 5 -->
+      <section class="section">
+        <h3 class="section-title">
+          <span class="section-num">5</span>
+          Zero Sale of Personal Data & Third-Party Disclosure
+        </h3>
+        <p>
+          <strong>Proteinova maintains an absolute zero-monetization policy regarding user data.</strong> We do NOT sell, trade, rent, or lease your personal or operational data to third-party advertising brokers or data aggregators.
+        </p>
+        <p>Information is shared only under strict operational confidentiality with:</p>
+        <ul>
+          <li><strong>Authorized Cold-Chain Logistics Operators:</strong> Exclusively for completing physical dispatches and deliveries.</li>
+          <li><strong>Cloud Infrastructure Services:</strong> Enterprise cloud hosts utilizing ISO/IEC 27001-compliant TLS encryption.</li>
+          <li><strong>Statutory & Regulatory Authorities:</strong> When legally mandated by judicial subpoenas or food safety regulatory audits under Indian law.</li>
+        </ul>
+      </section>
+
+      <!-- Section 6 -->
+      <section class="section">
+        <h3 class="section-title">
+          <span class="section-num">6</span>
+          Data Retention & Account Deletion Policy
+        </h3>
+        <p>
+          We retain operational data only as long as necessary to provide service, maintain financial audit logs under Indian tax regulations, and fulfill FSSAI traceability requirements.
+        </p>
+        <p>
+          <strong>How to Request Account & Data Deletion:</strong><br>
+          Users may request the deletion of their user profile and associated personal data at any time by emailing our Data Protection Officer at <a href="mailto:compliance@proteinovafoods.com" style="color: #073b2a; font-weight: 700;">compliance@proteinovafoods.com</a> with the subject line <em>"Account / Data Deletion Request"</em>. Requests are verified and fulfilled within 30 statutory business days.
+        </p>
+      </section>
+
+      <!-- Section 7 -->
+      <section class="section">
+        <h3 class="section-title">
+          <span class="section-num">7</span>
+          Security Safeguards
+        </h3>
+        <p>
+          All data in transit across our Android mobile app and web services is encrypted using industry-standard Transport Layer Security (TLS 1.3). Access to administrative tools is gated behind role-based access control (RBAC) and monitored for security compliance.
+        </p>
+      </section>
+
+      <!-- Section 8 -->
+      <section class="section">
+        <h3 class="section-title">
+          <span class="section-num">8</span>
+          Children’s Privacy
+        </h3>
+        <p>
+          Proteinova Connect and our commercial supply portals are directed toward adults, commercial wholesale partners, and authorized staff. We do not knowingly collect personal information from individuals under the age of 18.
+        </p>
+      </section>
+
+      <!-- Section 9 Contact -->
+      <section class="section">
+        <h3 class="section-title">
+          <span class="section-num">9</span>
+          Grievance Officer & Legal Contact
+        </h3>
+        <div class="contact-card">
+          <h4>Designated Data Protection & Grievance Officer</h4>
+          <p style="margin-bottom: 6px;"><strong>Entity:</strong> Proteinova Food Products Private Limited</p>
+          <p style="margin-bottom: 6px;"><strong>Address:</strong> Regional Operations Center, Coimbatore & Chennai, Tamil Nadu, India</p>
+          <p style="margin-bottom: 6px;"><strong>Email:</strong> <a href="mailto:compliance@proteinovafoods.com" style="color: #166534; font-weight: 700;">compliance@proteinovafoods.com</a></p>
+          <p><strong>Official Web:</strong> <a href="https://proteinova.in" target="_blank" style="color: #166534; font-weight: 700;">https://proteinova.in</a></p>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <p>© 2026 Proteinova Food Products Private Limited. All rights reserved.</p>
+    <p style="margin-top: 8px; font-size: 0.75rem; color: #76a68f;">
+      <a href="/">Home</a> • <a href="/privacypolicy">Privacy Policy</a> • <a href="/termsofsupply">Terms of Supply</a> • <a href="/foodsafety">Food Safety</a>
+    </p>
+  </footer>
+
+</body>
+</html>
