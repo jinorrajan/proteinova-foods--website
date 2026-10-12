@@ -83,6 +83,51 @@ const getTabFromLocation = (): string => {
 
 export default function App() {
   const [currentTab, setCurrentTab] = useState<string>(() => getTabFromLocation());
+  const [selectedRecipe, setSelectedRecipe] = useState<Recipe | null>(null);
+  const [savedRecipeIds, setSavedRecipeIds] = useState<Set<string>>(() => {
+    try {
+      const stored = localStorage.getItem('proteinova_saved_recipes');
+      if (stored) return new Set(JSON.parse(stored));
+    } catch {}
+    return new Set(['golden-truffle-soft-scramble', 'spiced-skillet-shakshuka']);
+  });
+  const [isBookmarksOpen, setIsBookmarksOpen] = useState(false);
+  const [isSubmitModalOpen, setIsSubmitModalOpen] = useState(false);
+
+  React.useEffect(() => {
+    try {
+      localStorage.setItem('proteinova_saved_recipes', JSON.stringify(Array.from(savedRecipeIds)));
+    } catch {}
+  }, [savedRecipeIds]);
+
+  // Toggle bookmark helper
+  const handleToggleBookmark = (recipeId: string) => {
+    setSavedRecipeIds((prev) => {
+      const next = new Set(prev);
+      if (next.has(recipeId)) {
+        next.delete(recipeId);
+      } else {
+        next.add(recipeId);
+      }
+      return next;
+    });
+  };
+
+  // Open recipe and sync URL
+  const handleOpenRecipe = (recipe: Recipe | null) => {
+    setSelectedRecipe(recipe);
+    try {
+      const url = new URL(window.location.href);
+      if (recipe) {
+        url.searchParams.set('recipe', recipe.id);
+      } else {
+        url.searchParams.delete('recipe');
+      }
+      window.history.replaceState({}, '', url.toString());
+    } catch {
+      // Fallback
+    }
+  };
 
   // Navigation handler with browser history pushState
   const handleNavigate = (tab: string, replace = false) => {
