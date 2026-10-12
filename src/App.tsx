@@ -19,108 +19,70 @@ import { PartnerView } from './views/PartnerView';
 import { ContactView } from './views/ContactView';
 import { RECIPES, Recipe } from './data/recipes';
 
-export default function App() {
-  const [currentTab, setCurrentTab] = useState<string>('home');
-  const [selectedRecipe, setSelectedRecipe] = useState<Recipe | null>(null);
-  const [savedRecipeIds, setSavedRecipeIds] = useState<Set<string>>(() => {
-    try {
-      const stored = localStorage.getItem('proteinova_saved_recipes');
-      if (stored) return new Set(JSON.parse(stored));
-    } catch {}
-    return new Set(['golden-truffle-soft-scramble', 'spiced-skillet-shakshuka']);
-  });
-  const [isBookmarksOpen, setIsBookmarksOpen] = useState(false);
-  const [isSubmitModalOpen, setIsSubmitModalOpen] = useState(false);
+// Map of tab IDs to canonical URL pathnames
+const tabToPath: Record<string, string> = {
+  'home': '/',
+  'about-us': '/about',
+  'products': '/products',
+  'recipes': '/recipes',
+  'partner-with-us': '/partner',
+  'contact-us': '/contact',
+  'privacy-policy': '/privacypolicy',
+  'terms-of-supply': '/termsofsupply',
+  'food-safety': '/foodsafety',
+};
 
-  React.useEffect(() => {
-    try {
-      localStorage.setItem('proteinova_saved_recipes', JSON.stringify(Array.from(savedRecipeIds)));
-    } catch {}
-  }, [savedRecipeIds]);
-
-  // Toggle bookmark helper
-  const handleToggleBookmark = (recipeId: string) => {
-    setSavedRecipeIds((prev) => {
-      const next = new Set(prev);
-      if (next.has(recipeId)) {
-        next.delete(recipeId);
-      } else {
-        next.add(recipeId);
-      }
-      return next;
-    });
-  };
-
-  // Open recipe and sync URL
-  const handleOpenRecipe = (recipe: Recipe | null) => {
-    setSelectedRecipe(recipe);
-    try {
-      const url = new URL(window.location.href);
-      if (recipe) {
-        url.searchParams.set('recipe', recipe.id);
-      } else {
-        url.searchParams.delete('recipe');
-      }
-      window.history.replaceState({}, '', url.toString());
-    } catch {
-      // Fallback
+// Resolve current route from window.location pathname & query
+const getTabFromLocation = (): string => {
+  try {
+    const path = window.location.pathname.toLowerCase().replace(/\/$/, '') || '/';
+    const hash = window.location.hash.toLowerCase().replace(/^#\/?/, '');
+    
+    // Match pathnames
+    if (
+      path === '/privacypolicy' || 
+      path === '/privacy-policy' || 
+      path.includes('privacypolicy') || 
+      path.includes('privacy-policy') || 
+      hash === 'privacypolicy' || 
+      hash === 'privacy-policy'
+    ) {
+      return 'privacy-policy';
     }
-  };
+    if (path === '/termsofsupply' || path === '/terms-of-supply' || path === '/terms' || hash === 'termsofsupply' || hash === 'terms-of-supply' || hash === 'terms') {
+      return 'terms-of-supply';
+    }
+    if (path === '/foodsafety' || path === '/food-safety' || hash === 'foodsafety' || hash === 'food-safety') {
+      return 'food-safety';
+    }
+    if (path === '/about' || path === '/about-us' || hash === 'about') {
+      return 'about-us';
+    }
+    if (path === '/products' || hash === 'products') {
+      return 'products';
+    }
+    if (path === '/recipes' || hash === 'recipes') {
+      return 'recipes';
+    }
+    if (path === '/partner' || path === '/partner-with-us' || hash === 'partner') {
+      return 'partner-with-us';
+    }
+    if (path === '/contact' || path === '/contact-us' || hash === 'contact') {
+      return 'contact-us';
+    }
 
-  // Map of tab IDs to canonical URL pathnames
-  const tabToPath: Record<string, string> = {
-    'home': '/',
-    'about-us': '/about',
-    'products': '/products',
-    'recipes': '/recipes',
-    'partner-with-us': '/partner',
-    'contact-us': '/contact',
-    'privacy-policy': '/privacypolicy',
-    'terms-of-supply': '/termsofsupply',
-    'food-safety': '/foodsafety',
-  };
+    // Query param fallback (?page=privacypolicy)
+    const params = new URLSearchParams(window.location.search);
+    const pageParam = params.get('page');
+    if (pageParam && (pageParam === 'privacypolicy' || pageParam === 'privacy-policy')) return 'privacy-policy';
+    if (pageParam && (pageParam === 'termsofsupply' || pageParam === 'terms-of-supply')) return 'terms-of-supply';
+    if (pageParam && (pageParam === 'foodsafety' || pageParam === 'food-safety')) return 'food-safety';
+  } catch {}
+  return 'home';
+};
 
-  // Resolve current route from window.location pathname & query
-  const getTabFromLocation = (): string => {
-    try {
-      const path = window.location.pathname.toLowerCase().replace(/\/$/, '') || '/';
-      const hash = window.location.hash.toLowerCase().replace(/^#\/?/, '');
-      
-      // Match pathnames
-      if (path === '/privacypolicy' || path === '/privacy-policy' || hash === 'privacypolicy' || hash === 'privacy-policy') {
-        return 'privacy-policy';
-      }
-      if (path === '/termsofsupply' || path === '/terms-of-supply' || path === '/terms' || hash === 'termsofsupply' || hash === 'terms-of-supply' || hash === 'terms') {
-        return 'terms-of-supply';
-      }
-      if (path === '/foodsafety' || path === '/food-safety' || hash === 'foodsafety' || hash === 'food-safety') {
-        return 'food-safety';
-      }
-      if (path === '/about' || path === '/about-us' || hash === 'about') {
-        return 'about-us';
-      }
-      if (path === '/products' || hash === 'products') {
-        return 'products';
-      }
-      if (path === '/recipes' || hash === 'recipes') {
-        return 'recipes';
-      }
-      if (path === '/partner' || path === '/partner-with-us' || hash === 'partner') {
-        return 'partner-with-us';
-      }
-      if (path === '/contact' || path === '/contact-us' || hash === 'contact') {
-        return 'contact-us';
-      }
-
-      // Query param fallback (?page=privacypolicy)
-      const params = new URLSearchParams(window.location.search);
-      const pageParam = params.get('page');
-      if (pageParam && (pageParam === 'privacypolicy' || pageParam === 'privacy-policy')) return 'privacy-policy';
-      if (pageParam && (pageParam === 'termsofsupply' || pageParam === 'terms-of-supply')) return 'terms-of-supply';
-      if (pageParam && (pageParam === 'foodsafety' || pageParam === 'food-safety')) return 'food-safety';
-    } catch {}
-    return 'home';
-  };
+export default function App() {
+  const [currentTab, setCurrentTab] = useState<string>(() => getTabFromLocation());
 
   // Navigation handler with browser history pushState
   const handleNavigate = (tab: string, replace = false) => {
